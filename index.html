@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sattva - Food for Soul | Gourmet Pure Vegetarian Cafe Indore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sunny: {
+                            light: '#FEF9E7',       // Main warm light yellow background
+                            butter: '#FEF08A',      // Soft butter yellow for cards
+                            cream: '#FFFBEB',       // Gentle pale yellow panel
+                            gold: '#D97706',        // Golden amber accent
+                            amberDark: '#B45309',   // Deep golden brown for buttons
+                            forest: '#14532D',      // Deep forest green for high contrast text
+                            charcoal: '#2E2A1F'     // Soft dark charcoal-yellow for body text
+                        }
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(254, 249, 231, 0.92);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #FEF9E7;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #D97706;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-sunny-light text-sunny-charcoal font-sans selection:bg-sunny-butter selection:text-sunny-forest antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-nav shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-full border-2 border-sunny-gold flex items-center justify-center bg-sunny-butter group-hover:scale-105 transition-transform shadow-sm">
+                        <span class="font-cinzel text-2xl font-bold text-sunny-forest">S</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-cinzel text-2xl font-bold tracking-widest text-sunny-forest">sattva</span>
+                        <span class="text-[10px] uppercase tracking-[0.3em] text-sunny-gold font-bold -mt-1">Food for Soul</span>
+                    </div>
+                </a>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8 font-semibold text-xs uppercase tracking-widest text-sunny-forest">
+                    <a href="#about" class="hover:text-sunny-gold transition-colors">Our Story</a>
+                    <a href="#menu" class="hover:text-sunny-gold transition-colors">Full Menu</a>
+                    <a href="#specialties" class="hover:text-sunny-gold transition-colors">Specialties</a>
+                    <a href="#reviews" class="hover:text-sunny-gold transition-colors">Reviews</a>
+                    <a href="#contact" class="hover:text-sunny-gold transition-colors">Location</a>
+                </div>
+
+                <!-- Action CTA Button -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="openModal('reservationModal')" class="px-6 py-2.5 bg-sunny-gold text-sunny-light font-bold rounded-full text-xs uppercase tracking-widest hover:bg-sunny-forest hover:text-sunny-butter transition-all shadow-md">
+                        Book a Table
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-sunny-forest p-2 rounded-lg hover:bg-sunny-butter">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-sunny-light border-b border-sunny-gold/20 px-4 pt-2 pb-6 space-y-3 shadow-lg">
+            <a href="#about" class="block py-2 text-sunny-forest font-bold text-sm">Our Story</a>
+            <a href="#menu" class="block py-2 text-sunny-forest font-bold text-sm">Full Menu</a>
+            <a href="#specialties" class="block py-2 text-sunny-forest font-bold text-sm">Specialties</a>
+            <a href="#reviews" class="block py-2 text-sunny-forest font-bold text-sm">Reviews</a>
+            <a href="#contact" class="block py-2 text-sunny-forest font-bold text-sm">Location</a>
+            <div class="pt-4">
+                <button onclick="openModal('reservationModal')" class="w-full py-2.5 bg-sunny-gold text-sunny-light font-bold rounded-full text-xs uppercase">
+                    Book a Table
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner with Soft Light Yellow Gradient -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 bg-gradient-to-b from-sunny-butter/60 via-sunny-light to-sunny-light overflow-hidden">
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center py-20">
+            <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-sunny-gold/40 bg-sunny-cream/80 text-sunny-forest text-xs font-bold uppercase tracking-widest mb-6 shadow-sm backdrop-blur-md">
+                <i class="fas fa-leaf text-sunny-gold"></i> Pure Vegetarian Gourmet Experience
+            </div>
+            <h1 class="font-cinzel text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-sunny-forest mb-6 leading-tight">
+                Every Plate Tells A Story,<br>Made With <span class="text-sunny-gold italic font-serif">Patience & Love</span>[cite: 1]
+            </h1>
+            <p class="max-w-2xl mx-auto text-base sm:text-lg text-sunny-charcoal/80 font-medium mb-10 leading-relaxed">
+                Welcome to Sattva - Food for Soul. Discover artisanal wood-fired styled pizzas, authentic Indian curries, botanical mocktails, and sizzlers crafted lovingly upon order.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#menu" class="w-full sm:w-auto px-8 py-4 bg-sunny-forest text-sunny-butter font-bold rounded-full text-xs uppercase tracking-widest hover:bg-sunny-gold hover:text-sunny-light transition-all shadow-xl hover:scale-105">
+                    Explore Full Menu
+                </a>
+                <button onclick="openModal('reservationModal')" class="w-full sm:w-auto px-8 py-4 border-2 border-sunny-forest text-sunny-forest font-bold rounded-full text-xs uppercase tracking-widest hover:bg-sunny-forest hover:text-sunny-butter transition-all backdrop-blur-sm bg-sunny-cream/40">
+                    Reserve Table
+                </button>
+            </div>
+
+            <!-- Highlight Badges -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-sunny-gold/30 text-center">
+                <div class="p-4 rounded-2xl bg-sunny-cream/90 border border-sunny-gold/20 shadow-sm">
+                    <p class="font-cinzel text-2xl font-bold text-sunny-forest">100%</p>
+                    <p class="text-[11px] uppercase font-bold tracking-wider text-sunny-charcoal/70 mt-1">Pure Vegetarian</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-sunny-cream/90 border border-sunny-gold/20 shadow-sm">
+                    <p class="font-cinzel text-2xl font-bold text-sunny-forest">25 Min</p>
+                    <p class="text-[11px] uppercase font-bold tracking-wider text-sunny-charcoal/70 mt-1">Fresh Cooking Prep[cite: 1]</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-sunny-cream/90 border border-sunny-gold/20 shadow-sm">
+                    <p class="font-cinzel text-2xl font-bold text-sunny-forest">Gourmet</p>
+                    <p class="text-[11px] uppercase font-bold tracking-wider text-sunny-charcoal/70 mt-1">Fusion & Curries</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-sunny-cream/90 border border-sunny-gold/20 shadow-sm">
+                    <p class="font-cinzel text-2xl font-bold text-sunny-forest">4.8 ★</p>
+                    <p class="text-[11px] uppercase font-bold tracking-wider text-sunny-charcoal/70 mt-1">Google Maps Rating</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="about" class="py-20 bg-sunny-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="relative z-10 rounded-3xl overflow-hidden shadow-xl border-4 border-sunny-butter">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80" alt="Sattva Kitchen & Ambiance" class="w-full h-[450px] object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 z-20 hidden sm:block bg-sunny-cream p-6 rounded-3xl border border-sunny-gold/30 shadow-lg max-w-xs">
+                        <p class="font-serif italic text-sunny-forest text-sm font-semibold mb-1">Our Kitchen Philosophy</p>
+                        <p class="text-xs text-sunny-charcoal/90 leading-relaxed font-medium">"Please allow 25 minutes for the magic to happen. Made with patience and love."[cite: 1]</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <span class="text-sunny-gold font-bold text-xs uppercase tracking-widest border-b-2 border-sunny-gold pb-1">Soulful Hospitality</span>
+                    <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-sunny-forest leading-tight">
+                        A Sanctuary for Pure Vegetarian Gourmets in Indore
+                    </h2>
+                    <p class="text-sunny-charcoal/80 text-sm sm:text-base leading-relaxed">
+                        At <span class="font-bold text-sunny-forest">Sattva - Food for Soul</span>, every dish is an invitation to pause, relish, and nourish your spirit. We combine handpicked fresh ingredients with slow-cooking patience to serve memorable culinary journeys.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="flex items-start gap-3 p-4 rounded-2xl bg-sunny-butter/50 border border-sunny-gold/20">
+                            <i class="fas fa-pizza-slice text-sunny-gold text-lg mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-sunny-forest">Signature Fusion</h4>
+                                <p class="text-xs text-sunny-charcoal/70 mt-0.5">Guava Glow Pizza[cite: 9] & Pineapple Curry[cite: 11]</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 rounded-2xl bg-sunny-butter/50 border border-sunny-gold/20">
+                            <i class="fas fa-glass-martini-alt text-sunny-forest text-lg mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-sunny-forest">Botanic Coolers</h4>
+                                <p class="text-xs text-sunny-charcoal/70 mt-0.5">Blood Purifier[cite: 3] & Mango Cilantro Coolers[cite: 3]</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Complete Website Menu Section (All Dishes Written Out Directly) -->
+    <section id="menu" class="py-20 bg-gradient-to-b from-sunny-light via-sunny-butter/30 to-sunny-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-sunny-gold text-xs font-bold uppercase tracking-widest">Prepared Fresh To Order</span>
+                <h2 class="font-cinzel text-3xl sm:text-5xl font-bold text-sunny-forest mt-1">Our Complete Menu</h2>
+                <p class="text-sunny-charcoal/70 text-xs sm:text-sm mt-3 font-medium">
+                    Select a category below to explore all our dishes, fresh beverages, breads, and desserts directly.
+                </p>
+            </div>
+
+            <!-- Menu Category Navigation Tabs -->
+            <div class="flex items-center justify-start lg:justify-center gap-2 overflow-x-auto pb-4 custom-scrollbar mb-12">
+                <button onclick="switchTab('starters')" id="tab-starters" class="menu-tab px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap bg-sunny-forest text-sunny-butter shadow-md">
+                    Starters & Kebabs
+                </button>
+                <button onclick="switchTab('pizzas')" id="tab-pizzas" class="menu-tab px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap bg-sunny-butter/70 text-sunny-forest hover:bg-sunny-butter">
+                    Pizzas & Toasts
+                </button>
+                <button onclick="switchTab('curries')" id="tab-curries" class="menu-tab px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap bg-sunny-butter/70 text-sunny-forest hover:bg-sunny-butter">
+                    Curries & Breads
+                </button>
+                <button onclick="switchTab('sizzlers')" id="tab-sizzlers" class="menu-tab px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap bg-sunny-butter/70 text-sunny-forest hover:bg-sunny-butter">
+                    Sizzlers & Continental
+                </button>
+                <button onclick="switchTab('soups')" id="tab-soups" class="menu-tab px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap bg-sunny-butter/70 text-sunny-forest hover:bg-sunny-butter">
+                    Soups & Salads
+                </button>
+                <button onclick="switchTab('indochinese')" id="tab-indochinese" class="menu-tab px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap bg-sunny-butter/70 text-sunny-forest hover:bg-sunny-butter">
+                    Indo-Chinese & Snacks
+                </button>
+                <button onclick="switchTab('drinks')" id="tab-drinks" class="menu-tab px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap bg-sunny-butter/70 text-sunny-forest hover:bg-sunny-butter">
+                    Beverages & Desserts
+                </button>
+            </div>
+
+            <!-- Tab Content Display Areas -->
+            <div class="min-h-[500px]">
+                
+                <!-- 1. Starters & Kebabs Tab -->
+                <div id="content-starters" class="menu-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-sunny-forest text-sunny-butter mb-2 inline-block">Chef Special</span>
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Multani Paneer Tikka</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Smoky, spicy, and herby. Each bite delivers a perfect balance of creamy paneer and zesty green marination[cite: 7].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Rajma Galouti Kebab</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Soft and flavorful kebabs with a melt-in-the-mouth texture inspired by traditional Galouti recipes[cite: 7].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Cheese Chilli Onion Kebab</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Cheesy, spicy, and flavorful kebabs served steaming hot as an appetizer[cite: 7].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Jalapeño Cheese Popper</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Crumb-fried jalapeños stuffed with molten cheese and light seasoning[cite: 7].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Paneer Gypsy Tikka</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Bold and smoky paneer tikka marinated in a rich spiced yogurt blend, finished with a fiery thecha punch[cite: 7].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Crumb-Fried Mushroom</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Fresh mushrooms coated in seasoned golden crumbs and deep-fried to perfection[cite: 7].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Tandoori Stuffed Tomatoes</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Juicy tomatoes filled with cheesy, spiced veggies grilled to smoky perfection[cite: 7].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Dahi Kabab</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Soft, creamy, and mildly spiced vegetarian take on traditional kababs[cite: 7].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Paneer Afghani Tikka</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Creamy and mildly spiced paneer tikka with rich malai flavor—a luxurious tandoori treat[cite: 7].</p>
+                    </div>
+                </div>
+
+                <!-- 2. Pizzas & Toasts Tab -->
+                <div id="content-pizzas" class="menu-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-sunny-gold text-sunny-light mb-2 inline-block">Signature Pizza</span>
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Guava Glow Pizza</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">A tropical Indian-Italian fusion where sweet guava meets tangy tomato and creamy paneer for a bold, modern bite[cite: 9].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Paneer Butterstone</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">A royal fusion of Indian richness and Italian elegance—tender paneer and butter-tossed tomatoes layered on a silky pesto-cream base[cite: 9].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Feta Bella Pizza</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Classic Italian style with fresh basil, cherry tomatoes, feta, and creamy mozzarella[cite: 9].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">White Velvet Pizza</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Creamy, indulgent, and herby—an elegant white-sauce pizza that feels like velvet on a crust[cite: 9].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Mumbai Grilled Sandwich</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Toasted sandwich filled with a zesty masala mix—spicy, warm, and comforting[cite: 8].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Ricotta Pesto Toast</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Creamy ricotta spread with aromatic fresh pesto on toasted artisanal bread[cite: 8].</p>
+                    </div>
+                </div>
+
+                <!-- 3. Curries & Breads Tab -->
+                <div id="content-curries" class="menu-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-sunny-forest text-sunny-butter mb-2 inline-block">Sattva Special</span>
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Pineapple Curry</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">A tropical twist on classic curry—juicy pineapple simmered in rich coconut cream with a blend of Indian spices[cite: 11].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Paneer Angara</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Bold and fiery paneer curry with smoky, tangy flavors—perfect for spice lovers[cite: 11].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Butter Paneer Masala</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Fresh paneer cubes in a rich, buttery tomato gravy with a creamy cashew base[cite: 11].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Methi Mutter Malai</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Creamy and mildly spiced paneer dish with cashews and fresh fenugreek[cite: 11].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Khamiry Gumetha Roti</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Soft, pillowy fermented traditional Naan with a crispy exterior that melts in your mouth[cite: 12].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Cheese Chilli Naan</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Fluffy naan stuffed with molten cheese, finely chopped green chillies, and roasted garlic[cite: 12].</p>
+                    </div>
+                </div>
+
+                <!-- 4. Sizzlers & Continental Tab -->
+                <div id="content-sizzlers" class="menu-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Oriental Dragon Sizzler</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Fiery wok-tossed noodles or rice with vibrant vegetables in smoky soy and chili sauce served sizzling hot[cite: 10].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Tandoori Paneer Makhani Sizzler</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Smoky tandoori paneer tikka served over fragrant rice, drenched in velvety makhani gravy[cite: 10].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Feta Cheese Steak Sizzler</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Grilled feta cheese steak served with herbed rice, fresh sautéed veggies, and smoky sauce[cite: 10].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Veg Cannelloni Pasta</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Soft pasta tubes filled with a creamy vegetable mix, baked with cheese and tomato sauce[cite: 10].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Pink Sauce Pasta</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">A luscious blend of tomato and cream with a cheesy finish—smooth and indulgent[cite: 10].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Veg Lasagna</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Classic Italian comfort food with layers of pasta, veggies, and rich sauces topped with gooey cheese[cite: 10].</p>
+                    </div>
+                </div>
+
+                <!-- 5. Soups & Salads Tab -->
+                <div id="content-soups" class="menu-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Thai Guava Spice Salad</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Nutty, creamy, and colorful salad designed to refresh and energize your palate[cite: 2].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Rainbow Crunch Bowl</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Creamy, cooling, and lightly sweet salad bowl with garden fresh ingredients[cite: 2].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Lemon Coriander Soup</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Light, refreshing clear soup infused with fresh lemon zest and coriander[cite: 4].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Khow Suey Soup</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Burmese-inspired coconut curry broth with noodles, veggies, and Southeast Asian spices[cite: 4].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Hot Garlic Basil Soup</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Bold soup featuring roasted garlic, fresh basil leaves, and a touch of chili[cite: 4].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Coconut Cream Soup</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Creamy and aromatic South Indian-style delight cooked with exotic coconut broth[cite: 4].</p>
+                    </div>
+                </div>
+
+                <!-- 6. Indo-Chinese & Snacks Tab -->
+                <div id="content-indochinese" class="menu-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Crispy Corn</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Golden-fried corn kernels tossed with zesty spices—crunchy and spicy[cite: 6].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Hakka Noodles</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Classic stir-fried noodles tossed with crunchy vegetables and aromatic sauces[cite: 6].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Chilli Paneer</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Soft paneer tossed in a fiery chili sauce with crunchy bell peppers and onions[cite: 6].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Honey Chilli Potato</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Sweet and spicy crispy potato fingers glazed in sesame honey sauce[cite: 6].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Overloaded Nachos</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Crispy nachos loaded with creamy cheese, spiced beans, and fresh veggies[cite: 6].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Papad Platter</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Assortment of roasted papads topped with zesty spiced bhel mix[cite: 6].</p>
+                    </div>
+                </div>
+
+                <!-- 7. Beverages & Desserts Tab -->
+                <div id="content-drinks" class="menu-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-sunny-forest text-sunny-butter mb-2 inline-block">Healthy Cooler</span>
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Blood Purifier</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">A sweet, tangy, and earthy drink packed with antioxidants and natural energy[cite: 3].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Mango Cilantro Cooler</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Tropical fusion of ripe mango, zesty lemon, and fresh cilantro—fizzy and light[cite: 3].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Crunchy Biscoff Shake</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Creamy and crunchy dessert shake featuring your favorite Biscoff cookie crumble[cite: 5].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Gulab Ki Kheer</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Creamy, fragrant milk-based dessert infused with gulkand and fresh rose petals[cite: 13].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Hazelnut Cappuccino</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Smooth espresso blended with creamy milk and roasted hazelnut essence[cite: 14].</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-sunny-cream border border-sunny-gold/30 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Sizzling Brownie with Ice Cream</h3>
+                        <p class="text-xs text-sunny-charcoal/80 mt-2 leading-relaxed">Decadent chocolate brownie served hot on a sizzling plate with vanilla ice cream[cite: 13].</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialties Photo Showcase -->
+    <section id="specialties" class="py-20 bg-sunny-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-sunny-gold text-xs font-bold uppercase tracking-widest">Handcrafted Experiences</span>
+                <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-sunny-forest mt-1">Gourmet Photo Gallery</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-sunny-cream rounded-3xl overflow-hidden shadow-md border border-sunny-gold/20 hover:shadow-xl transition-all">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80" alt="Artisanal Pizza" class="w-full h-60 object-cover">
+                    <div class="p-6 bg-sunny-butter/30">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Wood-Fired Fusion Pizza</h3>
+                        <p class="text-xs text-sunny-charcoal/70 mt-1">Crafted with fresh herb pestos and mozzarella.</p>
+                    </div>
+                </div>
+
+                <div class="bg-sunny-cream rounded-3xl overflow-hidden shadow-md border border-sunny-gold/20 hover:shadow-xl transition-all">
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="Sizzler" class="w-full h-60 object-cover">
+                    <div class="p-6 bg-sunny-butter/30">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Continental Sizzlers</h3>
+                        <p class="text-xs text-sunny-charcoal/70 mt-1">Piping hot platters served straight from open burners.</p>
+                    </div>
+                </div>
+
+                <div class="bg-sunny-cream rounded-3xl overflow-hidden shadow-md border border-sunny-gold/20 hover:shadow-xl transition-all">
+                    <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=800&q=80" alt="Coolers" class="w-full h-60 object-cover">
+                    <div class="p-6 bg-sunny-butter/30">
+                        <h3 class="font-cinzel text-lg font-bold text-sunny-forest">Botanic Mocktails</h3>
+                        <p class="text-xs text-sunny-charcoal/70 mt-1">Infused with natural fruits, cilantro, and spices.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guest Reviews -->
+    <section id="reviews" class="py-20 bg-sunny-butter/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-sunny-gold text-xs font-bold uppercase tracking-widest">Customer Love</span>
+                <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-sunny-forest mt-1">What Diners Say</h2>
+                <div class="flex items-center justify-center gap-1 text-sunny-gold text-base mt-2">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span class="text-xs font-bold text-sunny-forest ml-2">4.8 / 5 on Google Maps</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-3xl bg-sunny-cream shadow-sm border border-sunny-gold/20 flex flex-col justify-between">
+                    <p class="text-xs text-sunny-charcoal/80 italic leading-relaxed font-serif">
+                        "The atmosphere at Sattva is unbelievably serene. The Guava Glow Pizza was a culinary masterclass—sweet guava with savory paneer!"
+                    </p>
+                    <div class="mt-6 pt-4 border-t border-sunny-gold/20 flex items-center justify-between">
+                        <div>
+                            <p class="font-bold text-sm text-sunny-forest">Ananya Sharma</p>
+                            <p class="text-[10px] text-sunny-charcoal/60">Local Guide • Indore</p>
+                        </div>
+                        <i class="fab fa-google text-sunny-gold text-xl"></i>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-3xl bg-sunny-cream shadow-sm border border-sunny-gold/20 flex flex-col justify-between">
+                    <p class="text-xs text-sunny-charcoal/80 italic leading-relaxed font-serif">
+                        "Loved their commitment to serving food freshly prepared upon order. Khamiry Gumetha Roti with Paneer Angara is out of this world!"
+                    </p>
+                    <div class="mt-6 pt-4 border-t border-sunny-gold/20 flex items-center justify-between">
+                        <div>
+                            <p class="font-bold text-sm text-sunny-forest">Rahul Verma</p>
+                            <p class="text-[10px] text-sunny-charcoal/60">Verified Diner</p>
+                        </div>
+                        <i class="fab fa-google text-sunny-gold text-xl"></i>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-3xl bg-sunny-cream shadow-sm border border-sunny-gold/20 flex flex-col justify-between">
+                    <p class="text-xs text-sunny-charcoal/80 italic leading-relaxed font-serif">
+                        "One of the best pure vegetarian dining experiences in Indore. Their Blood Purifier drink and Sizzlers are a must try for family dinners."
+                    </p>
+                    <div class="mt-6 pt-4 border-t border-sunny-gold/20 flex items-center justify-between">
+                        <div>
+                            <p class="font-bold text-sm text-sunny-forest">Priya Mehta</p>
+                            <p class="text-[10px] text-sunny-charcoal/60">Indore Foodie</p>
+                        </div>
+                        <i class="fab fa-google text-sunny-gold text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Opening Hours -->
+    <section id="contact" class="py-20 bg-sunny-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-6">
+                    <span class="text-sunny-gold text-xs font-bold uppercase tracking-widest">Visit Us</span>
+                    <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-sunny-forest">Location & Hours</h2>
+                    <p class="text-xs text-sunny-charcoal/70">Come experience soul-nourishing vegetarian fine dining in Indore.</p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-sunny-cream border border-sunny-gold/30">
+                            <div class="w-10 h-10 rounded-full bg-sunny-forest text-sunny-butter flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-sunny-forest">Address</h4>
+                                <p class="text-xs text-sunny-charcoal/80 mt-1">Sattva - Food for Soul, Vijay Nagar / Palasia Main Rd, Indore, Madhya Pradesh</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-sunny-cream border border-sunny-gold/30">
+                            <div class="w-10 h-10 rounded-full bg-sunny-forest text-sunny-butter flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-sunny-forest">Opening Hours</h4>
+                                <p class="text-xs text-sunny-charcoal/80 mt-1">Monday – Sunday: 11:00 AM – 11:00 PM</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-sunny-cream border border-sunny-gold/30">
+                            <div class="w-10 h-10 rounded-full bg-sunny-forest text-sunny-butter flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-sunny-forest">Contact Phone</h4>
+                                <p class="text-xs font-bold text-sunny-forest mt-1">+91 98765 43210 / +91 731 2400000</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex gap-4">
+                        <button onclick="openModal('reservationModal')" class="flex-1 py-3 bg-sunny-forest text-sunny-butter font-bold rounded-xl text-xs uppercase tracking-widest hover:bg-sunny-gold hover:text-sunny-light transition-all text-center">
+                            Book Table Online
+                        </button>
+                        <a href="https://maps.app.goo.gl/ztjSvHC5fDJVzzaM6" target="_blank" class="flex-1 py-3 border border-sunny-forest text-sunny-forest font-bold rounded-xl text-xs uppercase tracking-widest hover:bg-sunny-forest hover:text-sunny-butter transition-all text-center">
+                            <i class="fas fa-directions mr-1"></i> Google Maps
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Google Maps Frame -->
+                <div class="rounded-3xl overflow-hidden shadow-xl border-4 border-sunny-butter bg-sunny-forest text-sunny-light h-[420px] flex flex-col items-center justify-center p-8 text-center relative">
+                    <i class="fas fa-map-marked-alt text-5xl text-sunny-gold mb-4"></i>
+                    <h3 class="font-cinzel text-2xl font-bold text-sunny-gold">Sattva - Food for Soul</h3>
+                    <p class="text-xs text-sunny-light/80 max-w-sm mt-2 mb-6">
+                        Click below to launch turn-by-turn directions directly in your maps app.
+                    </p>
+                    <a href="https://maps.app.goo.gl/ztjSvHC5fDJVzzaM6" target="_blank" class="px-8 py-3 bg-sunny-gold text-sunny-light font-bold rounded-full text-xs uppercase tracking-widest hover:bg-sunny-butter hover:text-sunny-forest transition-all">
+                        Open Google Maps
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-sunny-forest text-sunny-light py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex flex-col items-center justify-center space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full border-2 border-sunny-gold flex items-center justify-center bg-sunny-butter">
+                        <span class="font-cinzel text-xl font-bold text-sunny-forest">S</span>
+                    </div>
+                    <span class="font-cinzel text-2xl font-bold text-sunny-gold">sattva</span>
+                </div>
+                <p class="text-xs text-sunny-light/70 max-w-md">
+                    Every plate tells a story, made with patience and love[cite: 1]. Pure vegetarian gourmet cuisine in Indore.
+                </p>
+                <p class="text-[10px] text-sunny-light/40 pt-4">
+                    © 2026 Sattva - Food for Soul. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Reservation Modal -->
+    <div id="reservationModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="bg-sunny-light text-sunny-charcoal rounded-3xl max-w-md w-full p-6 shadow-2xl border-2 border-sunny-gold relative">
+            <button onclick="closeModal('reservationModal')" class="absolute top-4 right-4 text-sunny-charcoal/60 hover:text-sunny-forest text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="text-center mb-6">
+                <span class="text-sunny-gold text-[10px] font-bold uppercase tracking-widest">Reserve Your Spot</span>
+                <h3 class="font-cinzel text-2xl font-bold text-sunny-forest mt-1">Book a Table</h3>
+            </div>
+            <form onsubmit="handleReservation(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-sunny-forest mb-1">Full Name</label>
+                    <input type="text" required placeholder="Enter name" class="w-full px-4 py-2.5 rounded-xl border border-sunny-gold/40 text-xs bg-sunny-cream">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-sunny-forest mb-1">Phone Number</label>
+                        <input type="tel" required placeholder="+91..." class="w-full px-4 py-2.5 rounded-xl border border-sunny-gold/40 text-xs bg-sunny-cream">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-sunny-forest mb-1">Guests</label>
+                        <select class="w-full px-4 py-2.5 rounded-xl border border-sunny-gold/40 text-xs bg-sunny-cream">
+                            <option>2 Guests</option>
+                            <option>3-4 Guests</option>
+                            <option>5-8 Guests</option>
+                            <option>8+ Guests</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-sunny-forest mb-1">Date</label>
+                        <input type="date" required class="w-full px-4 py-2.5 rounded-xl border border-sunny-gold/40 text-xs bg-sunny-cream">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-sunny-forest mb-1">Time</label>
+                        <select class="w-full px-4 py-2.5 rounded-xl border border-sunny-gold/40 text-xs bg-sunny-cream">
+                            <option>1:30 PM (Lunch)</option>
+                            <option>7:30 PM (Dinner)</option>
+                            <option>8:30 PM (Dinner)</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="w-full py-3 bg-sunny-forest text-sunny-butter font-bold rounded-xl text-xs uppercase tracking-widest hover:bg-sunny-gold hover:text-sunny-light transition-all mt-2">
+                    Submit Reservation
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Controls -->
+    <script>
+        function switchTab(tabName) {
+            document.querySelectorAll('.menu-tab').forEach(tab => {
+                tab.classList.remove('bg-sunny-forest', 'text-sunny-butter', 'shadow-md');
+                tab.classList.add('bg-sunny-butter/70', 'text-sunny-forest');
+            });
+            document.querySelectorAll('.menu-content').forEach(c => c.classList.add('hidden'));
+
+            const activeTab = document.getElementById('tab-' + tabName);
+            const activeContent = document.getElementById('content-' + tabName);
+            if(activeTab && activeContent) {
+                activeTab.classList.add('bg-sunny-forest', 'text-sunny-butter', 'shadow-md');
+                activeTab.classList.remove('bg-sunny-butter/70');
+                activeContent.classList.remove('hidden');
+            }
+        }
+
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        function handleReservation(e) {
+            e.preventDefault();
+            alert('Table reservation request submitted successfully! We look forward to serving you at Sattva.');
+            closeModal('reservationModal');
+        }
+
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
